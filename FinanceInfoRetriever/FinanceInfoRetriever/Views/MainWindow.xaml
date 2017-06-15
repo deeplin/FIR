@@ -35,8 +35,8 @@
                     </StackPanel.Resources>
                     <Expander Header="查询">
                         <StackPanel Background="White">
-                            <Button Content="查询设置" Tag="/Views/SetupPage.xaml"/>
-                            <Button Content="查询结果" Tag="/Views/Manager/DeviceTest.xaml" />
+                            <Button x:Name="ButtonSearchSetting" Content="查询设置" Tag="/Views/SetupPage.xaml"/>
+                            <Button x:Name="ButtonSearchResult" Content="查询结果" Tag="/Views/Manager/DeviceTest.xaml" />
                         </StackPanel>
                     </Expander>
                 </StackPanel>
@@ -44,9 +44,7 @@
         </Expander>
         <Frame Name="detailFrame" Grid.Column="1" Margin="5"
                Background="White"
-               BorderThickness="1" BorderBrush="Blue"
-               NavigationUIVisibility="Hidden"
-               Source="/Views/SetupPage.xaml"/>
+               BorderThickness="1" BorderBrush="Blue"/>
     </Grid>
 </Window>
 

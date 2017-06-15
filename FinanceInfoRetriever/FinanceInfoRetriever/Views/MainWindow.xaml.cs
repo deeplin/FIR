@@ -27,12 +27,18 @@ namespace FinanceInfoRetriever.Views
         //Start all services
         private void Window_Initialized(object sender, EventArgs e)
         {
+            OpenPage(ButtonSearchSetting);
         }
 
         private Button mOldButton = new Button();
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button button = e.Source as Button;
+            OpenPage(button);
+        }
+
+        private void OpenPage(Button button)
+        {
             button.Foreground = Brushes.Red;
             mOldButton.Foreground = Brushes.Blue;
             mOldButton = button;

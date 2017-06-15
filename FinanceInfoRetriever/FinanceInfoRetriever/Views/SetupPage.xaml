@@ -4,15 +4,16 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FinanceInfoRetriever.Views"
-      mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="600" Title="SystemConfig">
+      mc:Ignorable="d" Title="SystemConfig">
     <Grid Background="Beige">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Label Content="查询设置" HorizontalAlignment="Center"/>
+
+        <Label Content="查询设置" Grid.Row="0" HorizontalAlignment="Center"/>
+        
         <DockPanel Grid.Row="1" Background="#FFFBFBF4">
             <StackPanel Orientation="Horizontal"
                       HorizontalAlignment="Center"
@@ -24,15 +25,28 @@
                         <EventSetter Event="Button.Click" Handler="Button_Click"/>
                     </Style>
                 </StackPanel.Resources>
-                <Button Name="startServer" Content="启动查询"/>
-                <Button Name="stopServer" Content="停止查询" IsEnabled="False"/>
-                <Button Name="clearLog" Content="清除记录"/>
+                <Button Name="buttonStart" Content="启动查询"/>
+                <Button Name="buttonStop" Content="停止查询" IsEnabled="False"/>
             </StackPanel>
             <Separator DockPanel.Dock="Bottom"/>
-            <TextBlock Name="display" DockPanel.Dock="Top" 
-                  HorizontalAlignment="Center"
-                  VerticalAlignment="Center" />
+            <Grid Margin="5" DockPanel.Dock="Top" HorizontalAlignment="Center" 
+                  VerticalAlignment="Top" Background="Black">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Content="深交所" HorizontalAlignment="center"/>
+                <Label Grid.Row="0" Grid.Column="1" Content="http://irm.cninfo.com.cn" HorizontalAlignment="center"/>
+                <TextBox Grid.Row="0" Grid.Column="2" Name="textBox1" Text="Hello，你好。" VerticalAlignment="Center"/>
+            </Grid>
         </DockPanel>
+
         <StatusBar Grid.Row="2">
             <Label Name="labelStatus" Content=""/>
         </StatusBar>
