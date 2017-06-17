@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,23 +31,14 @@ namespace FinanceInfoRetriever.Views
         {
             Button btn = e.Source as Button;
             string name = btn.Name;
-
         }
 
-        private void StartServer()
+
+        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
-        }
-
-        private void StopServer()
-        {
-
-        }
-
-        private int count = 0;
-        public void Display(string message)
-        {
-
+            Label label = sender as Label;
+            string link = label.Content as string;
+            Process.Start(new ProcessStartInfo(link));
         }
     }
 }
