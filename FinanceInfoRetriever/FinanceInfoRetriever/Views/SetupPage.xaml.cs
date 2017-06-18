@@ -1,5 +1,6 @@
 ﻿using FinanceInfoRetriever.Models;
 using FinanceInfoRetriever.Utils;
+using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -24,23 +25,22 @@ namespace FinanceInfoRetriever.Views
     /// </summary>
     public partial class SetupPage : Page
     {
-        private const string WEB_SITE_FILE = "WebSites.xml";
-        private readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
-        private List<WebSite> webSiteList;
+        private readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
         private XmlDataProvider provider = new XmlDataProvider();
         public SetupPage()
         {
+
         }
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-
-            webSiteList = XmlUtil.LoadFromXml<List<WebSite>>(WEB_SITE_FILE);
-
             DataGridWebSite.CanUserAddRows = false;
-            DataGridWebSite.ItemsSource = webSiteList;
+
+            IUnityContainer container = UnityConfig.GetConfiguredContainer();
+            SearchSetting searchSetting = container.Resolve<SearchSetting>();
+            DataGridWebSite.ItemsSource = searchSetting.WebSiteList;
         }
 
         private void DataGridWebSite_MouseDown(object sender, MouseButtonEventArgs e)
@@ -48,7 +48,7 @@ namespace FinanceInfoRetriever.Views
             DataGrid datagrid = sender as DataGrid;
             object obj = datagrid.CurrentItem;
 
-            if(obj != null)
+            if (obj != null)
             {
                 WebSite webSite = obj as WebSite;
                 Process.Start(new ProcessStartInfo(webSite.SiteAddress));
@@ -60,21 +60,39 @@ namespace FinanceInfoRetriever.Views
             Button btn = e.Source as Button;
             string name = btn.Name;
 
+            string status = "";
             switch (name)
             {
                 case ("buttonSave"):
                     Save();
+                    status = "已经保存";
                     break;
-                case (""):
+                case ("buttonStart"):
+                    buttonStart.IsEnabled = false;
+                    buttonStop.IsEnabled = true;
+                    status = "查询启动";
                     break;
-                case ("clearLog"):
+                case ("buttonStop"):
+                    buttonStart.IsEnabled = true;
+                    buttonStop.IsEnabled = false;
+                    status = "查询结束";
                     break;
             }
+            labelStatus.Content = status;
         }
 
         private void Save()
         {
-            XmlUtil.SaveToXml<List<WebSite>>(WEB_SITE_FILE, webSiteList);
+            IUnityContainer container = UnityConfig.GetConfiguredContainer();
+            SearchSetting searchSetting = container.Resolve<SearchSetting>();
+            XmlUtil.SaveToXml<List<WebSite>>(Constants.WEB_SITE_FILE, searchSetting.WebSiteList);
+
+
+        }
+
+        private void Start()
+        {
+
         }
     }
 }

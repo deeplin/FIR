@@ -69,7 +69,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\SearchControl.cs" />
+    <Compile Include="Models\SearchSetting.cs" />
     <Compile Include="Models\WebSite.cs" />
+    <Compile Include="Utils\Constants.cs" />
     <Compile Include="Utils\UnityConfig.cs" />
     <Compile Include="Utils\XmlUtil.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
@@ -79,10 +82,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\ResultPage.xaml.cs">
+      <DependentUpon>ResultPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\SetupPage.xaml.cs">
       <DependentUpon>SetupPage.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ResultPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -124,9 +134,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="WebSites.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

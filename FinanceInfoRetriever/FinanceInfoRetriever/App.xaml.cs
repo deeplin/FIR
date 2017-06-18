@@ -1,4 +1,7 @@
-﻿using System;
+﻿using FinanceInfoRetriever.Models;
+using FinanceInfoRetriever.Utils;
+using Microsoft.Practices.Unity;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -17,6 +20,9 @@ namespace FinanceInfoRetriever
 
         public void OnStartup(object sender, StartupEventArgs e)
         {
+            IUnityContainer container = UnityConfig.GetConfiguredContainer();
+            SearchSetting searchSetting = container.Resolve<SearchSetting>();
+            searchSetting.WebSiteList = XmlUtil.LoadFromXml<List<WebSite>>(Constants.WEB_SITE_FILE);
         }
 
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)

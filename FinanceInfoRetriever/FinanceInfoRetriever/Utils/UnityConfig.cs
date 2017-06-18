@@ -1,4 +1,6 @@
-﻿using Microsoft.Practices.Unity;
+﻿using FinanceInfoRetriever.Controls;
+using FinanceInfoRetriever.Models;
+using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +36,8 @@ namespace FinanceInfoRetriever.Utils
         {
             // TODO: Register your types here
             //Networks
-            //container.RegisterType<IConsoleServer, ConsoleServer>(new ContainerControlledLifetimeManager());
+            container.RegisterType<SearchControl>(new ContainerControlledLifetimeManager());
+            container.RegisterType<SearchSetting>(new ContainerControlledLifetimeManager());
 
         }
     }

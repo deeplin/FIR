@@ -34,16 +34,16 @@
                         </Style>
                     </StackPanel.Resources>
                     <Expander Header="查询">
-                        <StackPanel Background="White">
+                        <StackPanel>
                             <Button x:Name="ButtonSearchSetting" Content="查询设置" Tag="/Views/SetupPage.xaml"/>
-                            <Button x:Name="ButtonSearchResult" Content="查询结果" Tag="/Views/Manager/DeviceTest.xaml" />
+                            <Button x:Name="ButtonSearchResult" Content="查询结果" Tag="/Views/ResultPage.xaml" />
                         </StackPanel>
                     </Expander>
                 </StackPanel>
             </ScrollViewer>
         </Expander>
         <Frame Name="detailFrame" Grid.Column="1" Margin="5"
-               Background="White"
+               NavigationUIVisibility="Hidden"
                BorderThickness="1" BorderBrush="Blue"/>
     </Grid>
 </Window>
