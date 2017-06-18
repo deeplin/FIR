@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<WebSites>
+  <Source Id="1" Name="textBoxCnInfo" Display="互动易" Address="http://irm.cninfo.com.cn"/>
+  <Source Id="2" Name="textBoxSseInfo" Display="上证互动" Address="http://sns.sseinfo.com"/>
+  <Source Id="3" Name="textBoxCcgp" Display="政府采购" Address="http://www.ccgp.gov.cn"/>
+  <Source Id="4" Name="textBoxIfeng" Display="凤凰财经" Address="http://finance.ifeng.com"/>
+  <Source Id="5" Name="textBoxBaidu" Display="百度" Address="http://www.baidu.com"/>
+  <Source Id="6" Name="textBoxSzse" Display="深圳证券交易所" Address="http://disclosure.szse.cn/m/drgg.htm"/>
+</WebSites>

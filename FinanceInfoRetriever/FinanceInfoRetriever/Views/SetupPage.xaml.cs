@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml;
 
 namespace FinanceInfoRetriever.Views
 {
@@ -21,10 +22,21 @@ namespace FinanceInfoRetriever.Views
     /// </summary>
     public partial class SetupPage : Page
     {
+        private const string WEB_SITE_FILE = "WebSites.xml";
         private readonly NLog.Logger mLogger = NLog.LogManager.GetCurrentClassLogger();
 
+        private XmlDataProvider provider = new XmlDataProvider();
         public SetupPage()
         {
+        }
+
+        private void Page_Initialized(object sender, EventArgs e)
+        {
+            XmlDocument document = new XmlDocument();
+            document.Load(WEB_SITE_FILE);
+            provider.Document = document;
+            provider.XPath = @"WebSites/Source";
+            PanelWebSite.DataContext = provider;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -37,7 +49,8 @@ namespace FinanceInfoRetriever.Views
         private void Label_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Label label = sender as Label;
-            string link = label.Content as string;
+            XmlAttribute attribute = label.Content as XmlAttribute;
+            string link = attribute.Value;
             Process.Start(new ProcessStartInfo(link));
         }
     }

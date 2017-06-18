@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:FinanceInfoRetriever.Views"
-      mc:Ignorable="d" Title="SystemConfig">
+      mc:Ignorable="d" Title="SystemConfig" Initialized="Page_Initialized">
     <Grid Background="Beige">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -13,7 +13,7 @@
         </Grid.RowDefinitions>
 
         <Label Content="查询设置" Grid.Row="0" HorizontalAlignment="Center"/>
-        
+
         <DockPanel Grid.Row="1" Background="#FFFBFBF4">
             <StackPanel Orientation="Horizontal"
                       HorizontalAlignment="Center"
@@ -30,47 +30,20 @@
                 <Button Name="buttonStop" Content="停止查询" IsEnabled="False"/>
             </StackPanel>
             <Separator DockPanel.Dock="Bottom"/>
-            <Grid Margin="50,5" DockPanel.Dock="Top" 
-                  VerticalAlignment="Top">
-                <Grid.RowDefinitions>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Content="1." HorizontalAlignment="center"/>
-                <Label Grid.Row="0" Grid.Column="1" Content="互动易" HorizontalAlignment="left"/>
-                <Label Grid.Row="0" Grid.Column="2" Content="http://irm.cninfo.com.cn" HorizontalAlignment="left" MouseDown="Label_MouseDown"/>
-                <TextBox Grid.Row="0" Grid.Column="3" Name="textBoxCnInfo" Text="" VerticalAlignment="Center"/>
-                <Label Grid.Row="1" Grid.Column="0" Content="2." HorizontalAlignment="center"/>
-                <Label Grid.Row="1" Grid.Column="1" Content="上证互动" HorizontalAlignment="left"/>
-                <Label Grid.Row="1" Grid.Column="2" Content="http://sns.sseinfo.com" HorizontalAlignment="left" MouseDown="Label_MouseDown"/>
-                <TextBox Grid.Row="1" Grid.Column="3" Name="textBoxSseInfo" Text="" VerticalAlignment="Center"/>
-                <Label Grid.Row="2" Grid.Column="0" Content="3." HorizontalAlignment="center"/>
-                <Label Grid.Row="2" Grid.Column="1" Content="政府采购" HorizontalAlignment="left"/>
-                <Label Grid.Row="2" Grid.Column="2" Content="http://www.ccgp.gov.cn" HorizontalAlignment="left" MouseDown="Label_MouseDown"/>
-                <TextBox Grid.Row="2" Grid.Column="3" Name="textBoxCcgp" Text="" VerticalAlignment="Center"/>
-                <Label Grid.Row="3" Grid.Column="0" Content="4." HorizontalAlignment="center"/>
-                <Label Grid.Row="3" Grid.Column="1" Content="凤凰财经" HorizontalAlignment="left"/>
-                <Label Grid.Row="3" Grid.Column="2" Content="http://finance.ifeng.com" HorizontalAlignment="left" MouseDown="Label_MouseDown"/>
-                <TextBox Grid.Row="3" Grid.Column="3" Name="textBoxIfeng" Text="" VerticalAlignment="Center"/>
-                <Label Grid.Row="4" Grid.Column="0" Content="5." HorizontalAlignment="center"/>
-                <Label Grid.Row="4" Grid.Column="1" Content="百度" HorizontalAlignment="left"/>
-                <Label Grid.Row="4" Grid.Column="2" Content="http://www.baidu.com" HorizontalAlignment="left" MouseDown="Label_MouseDown"/>
-                <TextBox Grid.Row="4" Grid.Column="3" Name="textBoxBaidu" Text="" VerticalAlignment="Center"/>
-                <Label Grid.Row="5" Grid.Column="0" Content="6." HorizontalAlignment="center"/>
-                <Label Grid.Row="5" Grid.Column="1" Content="深圳证券交易所" HorizontalAlignment="left"/>
-                <Label Grid.Row="5" Grid.Column="2" Content="http://disclosure.szse.cn/m/drgg.htm" HorizontalAlignment="left" MouseDown="Label_MouseDown"/>
-                <TextBox Grid.Row="5" Grid.Column="3" Name="textBoxSzse" Text="" VerticalAlignment="Center"/>
-            </Grid>
+
+            <StackPanel Name="PanelWebSite" Background="Beige">
+                <ListBox ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True" HorizontalContentAlignment="Stretch">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding XPath=@Id}" HorizontalAlignment="Right" Width="20"/>
+                                <Label Content="{Binding XPath=@Display}" HorizontalAlignment="Left" Width="100"/>
+                                <Label Content="{Binding XPath=@Address}" HorizontalAlignment="Left" MouseDown="Label_MouseDown" Width="250"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
         </DockPanel>
 
         <StatusBar Grid.Row="2">
