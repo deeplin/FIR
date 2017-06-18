@@ -31,19 +31,14 @@
             </StackPanel>
             <Separator DockPanel.Dock="Bottom"/>
 
-            <StackPanel Name="PanelWebSite" Background="Beige">
-                <ListBox ItemsSource="{Binding}" IsSynchronizedWithCurrentItem="True" HorizontalContentAlignment="Stretch">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Content="{Binding XPath=@Id}" HorizontalAlignment="Right" Width="20"/>
-                                <Label Content="{Binding XPath=@Display}" HorizontalAlignment="Left" Width="100"/>
-                                <Label Content="{Binding XPath=@Address}" HorizontalAlignment="Left" MouseDown="Label_MouseDown" Width="250"/>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </StackPanel>
+            <DataGrid Name="DataGridWebSite" Background="White" Margin="5" AutoGenerateColumns="False" MouseDown="DataGridWebSite_MouseDown" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="网站ID" Binding="{Binding Path=Id}" Width="50" IsReadOnly="True" CanUserResize="False"/>
+                    <DataGridTextColumn Header="网站名称" Binding="{Binding Path=SiteName}" Width="100" IsReadOnly="True" CanUserResize="False"/>
+                    <DataGridTextColumn Header="网站地址" Binding="{Binding Path=SiteAddress}" Width="250" IsReadOnly="True" CanUserResize="False"/>
+                    <DataGridTextColumn Header="关键字" Binding="{Binding Path=Keyword}" Width="*" CanUserResize="False"/>
+                </DataGrid.Columns>
+            </DataGrid>
         </DockPanel>
 
         <StatusBar Grid.Row="2">

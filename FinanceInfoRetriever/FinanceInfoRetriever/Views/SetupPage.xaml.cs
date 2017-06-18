@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FinanceInfoRetriever.Models;
+using FinanceInfoRetriever.Utils;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -23,7 +25,9 @@ namespace FinanceInfoRetriever.Views
     public partial class SetupPage : Page
     {
         private const string WEB_SITE_FILE = "WebSites.xml";
-        private readonly NLog.Logger mLogger = NLog.LogManager.GetCurrentClassLogger();
+        private readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
+
+        private List<WebSite> webSiteList;
 
         private XmlDataProvider provider = new XmlDataProvider();
         public SetupPage()
@@ -32,26 +36,45 @@ namespace FinanceInfoRetriever.Views
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            XmlDocument document = new XmlDocument();
-            document.Load(WEB_SITE_FILE);
-            provider.Document = document;
-            provider.XPath = @"WebSites/Source";
-            PanelWebSite.DataContext = provider;
+
+            webSiteList = XmlUtil.LoadFromXml<List<WebSite>>(WEB_SITE_FILE);
+
+            DataGridWebSite.CanUserAddRows = false;
+            DataGridWebSite.ItemsSource = webSiteList;
+        }
+
+        private void DataGridWebSite_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DataGrid datagrid = sender as DataGrid;
+            object obj = datagrid.CurrentItem;
+
+            if(obj != null)
+            {
+                WebSite webSite = obj as WebSite;
+                Process.Start(new ProcessStartInfo(webSite.SiteAddress));
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Button btn = e.Source as Button;
             string name = btn.Name;
+
+            switch (name)
+            {
+                case ("buttonSave"):
+                    Save();
+                    break;
+                case (""):
+                    break;
+                case ("clearLog"):
+                    break;
+            }
         }
 
-
-        private void Label_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Save()
         {
-            Label label = sender as Label;
-            XmlAttribute attribute = label.Content as XmlAttribute;
-            string link = attribute.Value;
-            Process.Start(new ProcessStartInfo(link));
+            XmlUtil.SaveToXml<List<WebSite>>(WEB_SITE_FILE, webSiteList);
         }
     }
 }
