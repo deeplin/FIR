@@ -20,7 +20,7 @@ namespace FinanceInfoRetriever.Controls
 
         public void Start()
         {
-            lock (cancellationTokenSource)
+            lock (this)
             {
                 if(cancellationTokenSource != null)
                 {
@@ -36,12 +36,14 @@ namespace FinanceInfoRetriever.Controls
             parallelOptions.CancellationToken = cancellationTokenSource.Token;
 
             List<WebSite> webSiteList = searchSetting.WebSiteList;
-            Parallel.ForEach(webSiteList, parallelOptions, website => { });
+            Parallel.ForEach(webSiteList, parallelOptions, website => Search(website));
+
+            int id = Thread.CurrentThread.ManagedThreadId;
         }
 
         public void Stop()
         {
-            lock (cancellationTokenSource)
+            lock (this)
             {
                 if(cancellationTokenSource != null)
                 {
@@ -49,6 +51,18 @@ namespace FinanceInfoRetriever.Controls
                 }
             }
 
+        }
+
+        private void Search(WebSite website)
+        {
+            string linkAddress = website.LinkAddress;
+            if(string.IsNullOrEmpty(linkAddress))
+            {
+                return;
+            }
+
+
+            return;
         }
 
     }

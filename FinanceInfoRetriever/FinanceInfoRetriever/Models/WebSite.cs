@@ -14,6 +14,8 @@ namespace FinanceInfoRetriever.Models
 
         public string SiteAddress { get; set; }
 
+        public string LinkAddress { get; set; }
+
         public string Keyword { get; set; }
     }
 }

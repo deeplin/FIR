@@ -1,4 +1,5 @@
-﻿using FinanceInfoRetriever.Models;
+﻿using FinanceInfoRetriever.Controls;
+using FinanceInfoRetriever.Models;
 using FinanceInfoRetriever.Utils;
 using Microsoft.Practices.Unity;
 using System;
@@ -68,6 +69,7 @@ namespace FinanceInfoRetriever.Views
                     status = "已经保存";
                     break;
                 case ("buttonStart"):
+                    Start();
                     buttonStart.IsEnabled = false;
                     buttonStop.IsEnabled = true;
                     status = "查询启动";
@@ -86,13 +88,14 @@ namespace FinanceInfoRetriever.Views
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
             SearchSetting searchSetting = container.Resolve<SearchSetting>();
             XmlUtil.SaveToXml<List<WebSite>>(Constants.WEB_SITE_FILE, searchSetting.WebSiteList);
-
-
         }
 
         private void Start()
         {
-
+            IUnityContainer container = UnityConfig.GetConfiguredContainer();
+            SearchControl searchControl = container.Resolve<SearchControl>();
+            searchControl.Start();
         }
+
     }
 }

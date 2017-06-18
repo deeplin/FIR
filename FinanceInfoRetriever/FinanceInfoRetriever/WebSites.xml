@@ -4,42 +4,42 @@
     <Id>1</Id>
     <SiteName>互动易</SiteName>
     <SiteAddress>http://irm.cninfo.com.cn</SiteAddress>
-    <KeywordId>CnInfo</KeywordId>
+    <LinkAddress></LinkAddress>
     <Keyword></Keyword>
   </WebSite>
   <WebSite>
     <Id>2</Id>
     <SiteName>上证互动</SiteName>
     <SiteAddress>http://sns.sseinfo.com</SiteAddress>
-    <KeywordId>SseInfo</KeywordId>
+    <LinkAddress>http://sns.sseinfo.com/search.do?keyword={0}&amp;keywordEnd={1}</LinkAddress>
     <Keyword></Keyword>
   </WebSite>
   <WebSite>
     <Id>3</Id>
     <SiteName>政府采购</SiteName>
     <SiteAddress>http://www.ccgp.gov.cn</SiteAddress>
-    <KeywordId>Ccgp</KeywordId>
+    <LinkAddress></LinkAddress>
     <Keyword></Keyword>
   </WebSite>
   <WebSite>
     <Id>4</Id>
     <SiteName>凤凰财经</SiteName>
     <SiteAddress>http://finance.ifeng.com</SiteAddress>
-    <KeywordId>Ifeng</KeywordId>
+    <LinkAddress></LinkAddress>
     <Keyword></Keyword>
   </WebSite>
   <WebSite>
     <Id>5</Id>
     <SiteName>百度</SiteName>
     <SiteAddress>http://www.baidu.com</SiteAddress>
-    <KeywordId>Baidu</KeywordId>
+    <LinkAddress></LinkAddress>
     <Keyword></Keyword>
   </WebSite>
   <WebSite>
     <Id>6</Id>
     <SiteName>深圳证券交易所</SiteName>
     <SiteAddress>http://disclosure.szse.cn/m/drgg.htm</SiteAddress>
-    <KeywordId>Szse</KeywordId>
+    <LinkAddress></LinkAddress>
     <Keyword></Keyword>
   </WebSite>
 </ArrayOfWebSite>
