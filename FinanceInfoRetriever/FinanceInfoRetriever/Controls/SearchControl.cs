@@ -4,6 +4,7 @@ using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,25 +21,16 @@ namespace FinanceInfoRetriever.Controls
 
         public void Start()
         {
-            lock (this)
-            {
-                if(cancellationTokenSource != null)
-                {
-                    cancellationTokenSource.Cancel();
-                }
-                cancellationTokenSource = new CancellationTokenSource();
-            }
+            Stop();
+
+            cancellationTokenSource = new CancellationTokenSource();
 
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
             SearchSetting searchSetting = container.Resolve<SearchSetting>();
 
-            ParallelOptions parallelOptions = new ParallelOptions();
-            parallelOptions.CancellationToken = cancellationTokenSource.Token;
-
             List<WebSite> webSiteList = searchSetting.WebSiteList;
-            Parallel.ForEach(webSiteList, parallelOptions, website => Search(website));
+            Parallel.ForEach(webSiteList, website => Search(website));
 
-            int id = Thread.CurrentThread.ManagedThreadId;
         }
 
         public void Stop()
@@ -48,6 +40,8 @@ namespace FinanceInfoRetriever.Controls
                 if(cancellationTokenSource != null)
                 {
                     cancellationTokenSource.Cancel();
+                    cancellationTokenSource.Dispose();
+                    cancellationTokenSource = null;
                 }
             }
 
@@ -61,8 +55,19 @@ namespace FinanceInfoRetriever.Controls
                 return;
             }
 
+            switch (website.Id)
+            {
+                case 2:
+                    IUnityContainer container = UnityConfig.GetConfiguredContainer();
+                    IObserver<WebSite> observer = container.Resolve<SseinfoObserver>();
 
-            return;
+                    IObservable<WebSite> source = Observable.Interval(TimeSpan.FromSeconds(Constants.REFRESH_RATE))
+                        .Select(num => website);
+                    IDisposable subscription = source.Subscribe(observer);
+                    break;
+            }
+
+
         }
 
     }

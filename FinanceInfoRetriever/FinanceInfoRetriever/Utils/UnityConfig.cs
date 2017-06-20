@@ -39,6 +39,8 @@ namespace FinanceInfoRetriever.Utils
             container.RegisterType<SearchControl>(new ContainerControlledLifetimeManager());
             container.RegisterType<SearchSetting>(new ContainerControlledLifetimeManager());
 
+            container.RegisterType<SseinfoObserver>();
+
         }
     }
 }
