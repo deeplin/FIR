@@ -87,7 +87,7 @@ namespace FinanceInfoRetriever.Views
         {
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
             SearchSetting searchSetting = container.Resolve<SearchSetting>();
-            XmlUtil.SaveToXml<List<WebSite>>(Constants.WEB_SITE_FILE, searchSetting.WebSiteList);
+            XmlUtil.SaveToXml<List<WebSite>>(Constant.WEB_SITE_FILE, searchSetting.WebSiteList);
         }
 
         private void Start()

@@ -11,7 +11,7 @@
     <Id>2</Id>
     <SiteName>上证互动</SiteName>
     <SiteAddress>http://sns.sseinfo.com</SiteAddress>
-    <LinkAddress>http://sns.sseinfo.com/search.do?keyword={0}&amp;keywordEnd={1}</LinkAddress>
+    <LinkAddress>http://sns.sseinfo.com/search.do?keyword={0}&amp;keywordEnd={0}</LinkAddress>
     <Keyword></Keyword>
   </WebSite>
   <WebSite>
@@ -25,7 +25,7 @@
     <Id>4</Id>
     <SiteName>凤凰财经</SiteName>
     <SiteAddress>http://finance.ifeng.com</SiteAddress>
-    <LinkAddress></LinkAddress>
+    <LinkAddress>http://search.ifeng.com/sofeng/search.action?q={0}&amp;c=1&amp;chel=</LinkAddress>
     <Keyword></Keyword>
   </WebSite>
   <WebSite>

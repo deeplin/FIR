@@ -22,7 +22,7 @@ namespace FinanceInfoRetriever
         {
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
             SearchSetting searchSetting = container.Resolve<SearchSetting>();
-            searchSetting.WebSiteList = XmlUtil.LoadFromXml<List<WebSite>>(Constants.WEB_SITE_FILE);
+            searchSetting.WebSiteList = XmlUtil.LoadFromXml<List<WebSite>>(Constant.WEB_SITE_FILE);
         }
 
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)

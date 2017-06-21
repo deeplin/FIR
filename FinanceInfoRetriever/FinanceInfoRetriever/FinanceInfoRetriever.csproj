@@ -86,10 +86,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controls\SearchControl.cs" />
-    <Compile Include="Controls\SseinfoObserver.cs" />
+    <Compile Include="Controls\RestGetObserver.cs" />
     <Compile Include="Models\SearchSetting.cs" />
     <Compile Include="Models\WebSite.cs" />
-    <Compile Include="Utils\Constants.cs" />
+    <Compile Include="Parser\SseInfoParser.cs" />
+    <Compile Include="Utils\Constant.cs" />
     <Compile Include="Utils\UnityConfig.cs" />
     <Compile Include="Utils\XmlUtil.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">

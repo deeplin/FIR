@@ -14,9 +14,11 @@ namespace FinanceInfoRetriever.Controls
     public class SearchControl
     {
         private CancellationTokenSource cancellationTokenSource;
+        private List<IDisposable> disposableList;
 
         public SearchControl()
         {
+            disposableList = new List<IDisposable>();
         }
 
         public void Start()
@@ -43,32 +45,34 @@ namespace FinanceInfoRetriever.Controls
                     cancellationTokenSource.Dispose();
                     cancellationTokenSource = null;
                 }
-            }
 
+                disposableList.ToList().ForEach(disposable => disposable.Dispose());
+                disposableList.Clear();
+            }
         }
 
         private void Search(WebSite website)
         {
-            string linkAddress = website.LinkAddress;
-            if(string.IsNullOrEmpty(linkAddress))
+            if(string.IsNullOrEmpty(website.LinkAddress))
             {
                 return;
             }
 
-            switch (website.Id)
+            if(string.IsNullOrEmpty(website.Keyword))
             {
-                case 2:
-                    IUnityContainer container = UnityConfig.GetConfiguredContainer();
-                    IObserver<WebSite> observer = container.Resolve<SseinfoObserver>();
-
-                    IObservable<WebSite> source = Observable.Interval(TimeSpan.FromSeconds(Constants.REFRESH_RATE))
-                        .Select(num => website);
-                    IDisposable subscription = source.Subscribe(observer);
-                    break;
+                return;
             }
 
 
-        }
+            IUnityContainer container = UnityConfig.GetConfiguredContainer();
+            IObserver<WebSite> observer = container.Resolve<RestGetObserver>();
 
+            IObservable<WebSite> source = Observable
+                .Timer(TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(Constant.REFRESH_RATE))
+                .Select(num => website);
+            IDisposable subscription = source.Subscribe(observer);
+
+            disposableList.Add(subscription);
+        }
     }
 }
