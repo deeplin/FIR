@@ -31,7 +31,7 @@ namespace FinanceInfoRetriever.Controls
                 AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
                 //AllowAutoRedirect = true
             };
-            using (HttpClient httpClient = new HttpClient())
+            using (HttpClient httpClient = new HttpClient(handler))
             {
                 httpClient.DefaultRequestHeaders.Add("User-Agent", Constant.DefaultUserAgent);
 
@@ -49,21 +49,24 @@ namespace FinanceInfoRetriever.Controls
                 responseMessage.EnsureSuccessStatusCode();
 
                 string content;
+
+                content = await responseMessage.Content.ReadAsStringAsync();
                 switch (webSite.Id)
                 {
                     case 4:
-                        //string content = await responseMessage.Content.ReadAsStringAsync();
+
                         //return await Task.Run(() => JsonObject.Parse(content));
 
-                        using (Stream stream = await responseMessage.Content.ReadAsStreamAsync())
-                        using (Stream decompressed = new GZipStream(stream, CompressionMode.Decompress))
-                        using (StreamReader streamReader = new StreamReader(decompressed))
-                        {
-                            content = streamReader.ReadToEnd();
+                        //using (Stream stream = await responseMessage.Content.ReadAsStreamAsync())
+                        //using(Stream stream = await httpClient.GetStreamAsync(requestUri))
+                        ////using (Stream decompressed = new GZipStream(stream, CompressionMode.Decompress))
+                        //using (StreamReader streamReader = new StreamReader(stream))
+                        //{
+                        //    content = streamReader.ReadToEnd();
 
-                        }
+                        //}
 
-                            break;
+                        break;
                 }
             }
         }

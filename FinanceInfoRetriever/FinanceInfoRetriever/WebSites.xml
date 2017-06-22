@@ -18,7 +18,7 @@
     <Id>3</Id>
     <SiteName>政府采购</SiteName>
     <SiteAddress>http://www.ccgp.gov.cn</SiteAddress>
-    <LinkAddress></LinkAddress>
+    <LinkAddress>http://search.ccgp.gov.cn/znzxsearch?searchtype=2&amp;page_index=1&amp;searchchannel=0&amp;kw={0}</LinkAddress>
     <Keyword></Keyword>
   </WebSite>
   <WebSite>
