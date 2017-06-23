@@ -1,45 +1,51 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfWebSite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <WebSite>
     <Id>1</Id>
     <SiteName>互动易</SiteName>
     <SiteAddress>http://irm.cninfo.com.cn</SiteAddress>
-    <LinkAddress></LinkAddress>
-    <Keyword></Keyword>
+    <LinkAddress />
+    <Keyword />
+    <Referer />
   </WebSite>
   <WebSite>
     <Id>2</Id>
     <SiteName>上证互动</SiteName>
     <SiteAddress>http://sns.sseinfo.com</SiteAddress>
-    <LinkAddress>http://sns.sseinfo.com/search.do?keyword={0}&amp;keywordEnd={0}</LinkAddress>
-    <Keyword></Keyword>
+    <LinkAddress>http://sns.sseinfo.com/qasearch.do</LinkAddress>
+    <Keyword />
+    <Referer>http://sns.sseinfo.com/search.do?keyword={0}&amp;keywordEnd={0}</Referer>
   </WebSite>
   <WebSite>
     <Id>3</Id>
     <SiteName>政府采购</SiteName>
     <SiteAddress>http://www.ccgp.gov.cn</SiteAddress>
     <LinkAddress>http://search.ccgp.gov.cn/znzxsearch?searchtype=2&amp;page_index=1&amp;searchchannel=0&amp;kw={0}</LinkAddress>
-    <Keyword></Keyword>
+    <Keyword />
+    <Referer />
   </WebSite>
   <WebSite>
     <Id>4</Id>
     <SiteName>凤凰财经</SiteName>
     <SiteAddress>http://finance.ifeng.com</SiteAddress>
     <LinkAddress>http://search.ifeng.com/sofeng/search.action?q={0}&amp;c=1&amp;chel=</LinkAddress>
-    <Keyword></Keyword>
+    <Keyword />
+    <Referer />
   </WebSite>
   <WebSite>
     <Id>5</Id>
     <SiteName>百度</SiteName>
     <SiteAddress>http://www.baidu.com</SiteAddress>
-    <LinkAddress></LinkAddress>
-    <Keyword></Keyword>
+    <LinkAddress />
+    <Keyword />
+    <Referer />
   </WebSite>
   <WebSite>
     <Id>6</Id>
     <SiteName>深交所</SiteName>
     <SiteAddress>http://disclosure.szse.cn/m/drgg.htm</SiteAddress>
-    <LinkAddress></LinkAddress>
-    <Keyword></Keyword>
+    <LinkAddress />
+    <Keyword />
+    <Referer />
   </WebSite>
 </ArrayOfWebSite>

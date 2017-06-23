@@ -64,7 +64,7 @@ namespace FinanceInfoRetriever.Controls
             }
 
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
-            IObserver<WebSite> restGetObserver = container.Resolve<RestGetObserver>();
+            IObserver<WebSite> restGetObserver = container.Resolve<HttpObserver>();
 
             IObservable<WebSite> source = Observable
                 .Timer(TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(Constant.REFRESH_RATE))

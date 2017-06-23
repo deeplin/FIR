@@ -37,7 +37,14 @@
                     <DataGridTextColumn Header="网站" Binding="{Binding Path=SiteName}" Width="60" IsReadOnly="True" CanUserResize="False"/>
                     <DataGridTextColumn Header="时间" Binding="{Binding Path=PublishDate}" Width="120" IsReadOnly="True" CanUserResize="False"/>
                     <DataGridTextColumn Header="标题" Binding="{Binding Path=Title}" Width="200" IsReadOnly="True" CanUserResize="False"/>
-                    <DataGridTextColumn Header="摘要" Binding="{Binding Path=Content}" Width="*" CanUserResize="False"/>
+                    <DataGridTextColumn Header="内容" Binding="{Binding Path=Content}" Width="*" CanUserResize="False">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                <Setter Property="Height" Value="auto"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>

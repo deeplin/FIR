@@ -37,7 +37,7 @@ namespace FinanceInfoRetriever.Utils
             // TODO: Register your types here
             //Controls
             container.RegisterType<SearchControl>(new ContainerControlledLifetimeManager());
-            container.RegisterType<RestGetObserver>();
+            container.RegisterType<HttpObserver>();
 
             //Models
             container.RegisterType<SearchMetaData>(new ContainerControlledLifetimeManager());

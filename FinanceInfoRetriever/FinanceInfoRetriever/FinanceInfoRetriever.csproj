@@ -87,7 +87,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controls\SearchControl.cs" />
-    <Compile Include="Controls\RestGetObserver.cs" />
+    <Compile Include="Controls\HttpObserver.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\SearchMetaData.cs" />
     <Compile Include="Models\WebSite.cs" />
@@ -160,6 +160,9 @@
     <None Include="WebSites.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="HTMLPage1.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

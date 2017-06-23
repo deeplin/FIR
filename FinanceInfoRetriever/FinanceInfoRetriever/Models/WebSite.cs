@@ -9,6 +9,10 @@ namespace FinanceInfoRetriever.Models
 {
     public class WebSite
     {
+        public WebSite()
+        {
+            Referer = "";
+        }
         public int Id { get; set; }
 
         public string SiteName { get; set; }
@@ -18,6 +22,8 @@ namespace FinanceInfoRetriever.Models
         public string LinkAddress { get; set; }
 
         public string Keyword { get; set; }
+
+        public string Referer  { get; set; }
 
     }
 }
