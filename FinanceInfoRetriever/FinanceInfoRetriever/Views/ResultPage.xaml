@@ -34,10 +34,10 @@
 
             <DataGrid Name="DataGridWebSite" Margin="5" AutoGenerateColumns="False" >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="网站ID" Binding="{Binding Path=Id}" Width="50" IsReadOnly="True" CanUserResize="False"/>
-                    <DataGridTextColumn Header="网站名称" Binding="{Binding Path=SiteName}" Width="100" IsReadOnly="True" CanUserResize="False"/>
-                    <DataGridTextColumn Header="网站地址" Binding="{Binding Path=SiteAddress}" Width="250" IsReadOnly="True" CanUserResize="False"/>
-                    <DataGridTextColumn Header="关键字" Binding="{Binding Path=Keyword}" Width="*" CanUserResize="False"/>
+                    <DataGridTextColumn Header="网站" Binding="{Binding Path=SiteName}" Width="60" IsReadOnly="True" CanUserResize="False"/>
+                    <DataGridTextColumn Header="时间" Binding="{Binding Path=PublishDate}" Width="120" IsReadOnly="True" CanUserResize="False"/>
+                    <DataGridTextColumn Header="标题" Binding="{Binding Path=Title}" Width="200" IsReadOnly="True" CanUserResize="False"/>
+                    <DataGridTextColumn Header="摘要" Binding="{Binding Path=Content}" Width="*" CanUserResize="False"/>
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>

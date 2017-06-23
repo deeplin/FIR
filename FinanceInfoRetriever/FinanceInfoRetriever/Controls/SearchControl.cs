@@ -28,11 +28,11 @@ namespace FinanceInfoRetriever.Controls
             cancellationTokenSource = new CancellationTokenSource();
 
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
-            SearchSetting searchSetting = container.Resolve<SearchSetting>();
+            SearchMetaData searchSetting = container.Resolve<SearchMetaData>();
 
             List<WebSite> webSiteList = searchSetting.WebSiteList;
-            Parallel.ForEach(webSiteList, website => Search(website));
 
+            Parallel.ForEach(webSiteList, website => Search(website));
         }
 
         public void Stop()
@@ -63,14 +63,13 @@ namespace FinanceInfoRetriever.Controls
                 return;
             }
 
-
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
-            IObserver<WebSite> observer = container.Resolve<RestGetObserver>();
+            IObserver<WebSite> restGetObserver = container.Resolve<RestGetObserver>();
 
             IObservable<WebSite> source = Observable
                 .Timer(TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(Constant.REFRESH_RATE))
                 .Select(num => website);
-            IDisposable subscription = source.Subscribe(observer);
+            IDisposable subscription = source.Subscribe(restGetObserver);
 
             disposableList.Add(subscription);
         }

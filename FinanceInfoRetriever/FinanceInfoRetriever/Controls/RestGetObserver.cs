@@ -1,5 +1,7 @@
 ﻿using FinanceInfoRetriever.Models;
+using FinanceInfoRetriever.Parser;
 using FinanceInfoRetriever.Utils;
+using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -31,6 +33,7 @@ namespace FinanceInfoRetriever.Controls
                 AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate,
                 //AllowAutoRedirect = true
             };
+
             using (HttpClient httpClient = new HttpClient(handler))
             {
                 httpClient.DefaultRequestHeaders.Add("User-Agent", Constant.DefaultUserAgent);
@@ -48,12 +51,14 @@ namespace FinanceInfoRetriever.Controls
                 //will throw an exception if not successful
                 responseMessage.EnsureSuccessStatusCode();
 
-                string content;
+                string html = await responseMessage.Content.ReadAsStringAsync();
 
-                content = await responseMessage.Content.ReadAsStringAsync();
                 switch (webSite.Id)
                 {
-                    case 4:
+                    case 3:
+                        HtmlParser.GetCcgpArticle(html, webSite.SiteName);
+
+
 
                         //return await Task.Run(() => JsonObject.Parse(content));
 
@@ -70,6 +75,7 @@ namespace FinanceInfoRetriever.Controls
                 }
             }
         }
+
 
         //public async Task<JsonObject> PostAsync(string uri, string data)
         //{

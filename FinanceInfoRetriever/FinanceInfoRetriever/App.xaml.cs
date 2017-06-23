@@ -14,15 +14,15 @@ namespace FinanceInfoRetriever
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App : System.Windows.Application
     {
         private readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
         public void OnStartup(object sender, StartupEventArgs e)
         {
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
-            SearchSetting searchSetting = container.Resolve<SearchSetting>();
-            searchSetting.WebSiteList = XmlUtil.LoadFromXml<List<WebSite>>(Constant.WEB_SITE_FILE);
+            SearchMetaData searchMetaData = container.Resolve<SearchMetaData>();
+            searchMetaData.WebSiteList = XmlUtil.LoadFromXml<List<WebSite>>(Constant.WEB_SITE_FILE);
         }
 
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)

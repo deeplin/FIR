@@ -1,4 +1,7 @@
-﻿using System;
+﻿using FinanceInfoRetriever.Models;
+using FinanceInfoRetriever.Utils;
+using Microsoft.Practices.Unity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,6 +30,11 @@ namespace FinanceInfoRetriever.Views
 
         private void Page_Initialized(object sender, EventArgs e)
         {
+            DataGridWebSite.CanUserAddRows = false;
+
+            IUnityContainer container = UnityConfig.GetConfiguredContainer();
+            SearchMetaData searchMetaData = container.Resolve<SearchMetaData>();
+            DataGridWebSite.ItemsSource = searchMetaData.ArticleList;
         }
 
         private void DataGridWebSite_MouseDown(object sender, MouseButtonEventArgs e)

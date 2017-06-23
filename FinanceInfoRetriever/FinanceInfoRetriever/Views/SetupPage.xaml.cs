@@ -32,7 +32,6 @@ namespace FinanceInfoRetriever.Views
         private XmlDataProvider provider = new XmlDataProvider();
         public SetupPage()
         {
-
         }
 
         private void Page_Initialized(object sender, EventArgs e)
@@ -40,8 +39,8 @@ namespace FinanceInfoRetriever.Views
             DataGridWebSite.CanUserAddRows = false;
 
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
-            SearchSetting searchSetting = container.Resolve<SearchSetting>();
-            DataGridWebSite.ItemsSource = searchSetting.WebSiteList;
+            SearchMetaData searchMetaData = container.Resolve<SearchMetaData>();
+            DataGridWebSite.ItemsSource = searchMetaData.WebSiteList;
         }
 
         private void DataGridWebSite_MouseDown(object sender, MouseButtonEventArgs e)
@@ -86,7 +85,7 @@ namespace FinanceInfoRetriever.Views
         private void Save()
         {
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
-            SearchSetting searchSetting = container.Resolve<SearchSetting>();
+            SearchMetaData searchSetting = container.Resolve<SearchMetaData>();
             XmlUtil.SaveToXml<List<WebSite>>(Constant.WEB_SITE_FILE, searchSetting.WebSiteList);
         }
 

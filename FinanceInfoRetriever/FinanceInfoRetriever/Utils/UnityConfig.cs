@@ -35,12 +35,13 @@ namespace FinanceInfoRetriever.Utils
         public static void RegisterTypes(IUnityContainer container)
         {
             // TODO: Register your types here
-            //Networks
+            //Controls
             container.RegisterType<SearchControl>(new ContainerControlledLifetimeManager());
-            container.RegisterType<SearchSetting>(new ContainerControlledLifetimeManager());
-
             container.RegisterType<RestGetObserver>();
 
+            //Models
+            container.RegisterType<SearchMetaData>(new ContainerControlledLifetimeManager());
+            container.RegisterType<Article>();
         }
     }
 }

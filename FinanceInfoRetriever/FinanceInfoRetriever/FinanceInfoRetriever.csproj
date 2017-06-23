@@ -66,6 +66,7 @@
     <Reference Include="System.Reactive.Windows.Threading, Version=3.0.1000.0, Culture=neutral, PublicKeyToken=94bc3704cddfc263, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Reactive.Windows.Threading.3.1.1\lib\net45\System.Reactive.Windows.Threading.dll</HintPath>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -87,8 +88,11 @@
     </ApplicationDefinition>
     <Compile Include="Controls\SearchControl.cs" />
     <Compile Include="Controls\RestGetObserver.cs" />
-    <Compile Include="Models\SearchSetting.cs" />
+    <Compile Include="Models\Article.cs" />
+    <Compile Include="Models\SearchMetaData.cs" />
     <Compile Include="Models\WebSite.cs" />
+    <Compile Include="Parser\HtmlParser.cs" />
+    <Compile Include="Parser\GeneralHtmlParser.cs" />
     <Compile Include="Parser\SseInfoParser.cs" />
     <Compile Include="Utils\Constant.cs" />
     <Compile Include="Utils\UnityConfig.cs" />
@@ -152,7 +156,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="WebSites.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
