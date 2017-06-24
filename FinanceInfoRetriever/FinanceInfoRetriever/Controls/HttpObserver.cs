@@ -28,8 +28,6 @@ namespace FinanceInfoRetriever.Controls
 
         public async void OnNext(WebSite webSite)
         {
-
-
             switch (webSite.Id)
             {
                 case 2:

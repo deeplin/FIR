@@ -3,6 +3,7 @@ using FinanceInfoRetriever.Utils;
 using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,6 +45,11 @@ namespace FinanceInfoRetriever.Views
 
             if (obj != null)
             {
+                Article article = obj as Article;
+                if (article.Link != null)
+                {
+                    Process.Start(new ProcessStartInfo(article.Link));
+                }
             }
         }
 

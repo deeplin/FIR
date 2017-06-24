@@ -32,7 +32,7 @@
             </StackPanel>
             <Separator DockPanel.Dock="Bottom"/>
 
-            <DataGrid Name="DataGridWebSite" Margin="5" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid Name="DataGridWebSite" Margin="5" AutoGenerateColumns="False" IsReadOnly="True" MouseDown="DataGridWebSite_MouseDown">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="网站" Binding="{Binding Path=SiteName}" Width="60" CanUserResize="False"/>
                     <DataGridTemplateColumn Header="时间" Width="120" CanUserResize="False">
