@@ -40,7 +40,7 @@
                             <DataTemplate>
                                 <TextBlock>
                                     <TextBlock.Text>
-                                        <Binding Path="PublishDate" StringFormat="yyyy/MM/dd hh:mm"/>
+                                        <Binding Path="PublishDate" StringFormat="yyyy/MM/dd HH:mm"/>
                                     </TextBlock.Text>
                                 </TextBlock>
                             </DataTemplate>

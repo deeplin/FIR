@@ -47,6 +47,13 @@ namespace FinanceInfoRetriever.Controls
                         HtmlParser.GetCcgpArticle(html, webSite.SiteName);
                     }
                     break;
+                case 4:
+                    {
+                        string requestUri = String.Format(webSite.LinkAddress, webSite.Keyword);
+                        string html = await HttpGet(requestUri);
+                        HtmlParser.GetIfengArticle(html, webSite.SiteName);
+                    }
+                    break;
 
 
                     //return await Task.Run(() => JsonObject.Parse(content));
