@@ -16,6 +16,6 @@ namespace FinanceInfoRetriever.Models
 
         public string Link { get; set; }
 
-        public string PublishDate { get; set; }
+        public DateTime PublishDate { get; set; }
     }
 }

@@ -32,11 +32,21 @@
             </StackPanel>
             <Separator DockPanel.Dock="Bottom"/>
 
-            <DataGrid Name="DataGridWebSite" Margin="5" AutoGenerateColumns="False" >
+            <DataGrid Name="DataGridWebSite" Margin="5" AutoGenerateColumns="False" IsReadOnly="True">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="网站" Binding="{Binding Path=SiteName}" Width="60" IsReadOnly="True" CanUserResize="False"/>
-                    <DataGridTextColumn Header="时间" Binding="{Binding Path=PublishDate}" Width="120" IsReadOnly="True" CanUserResize="False"/>
-                    <DataGridTextColumn Header="标题" Binding="{Binding Path=Title}" Width="200" IsReadOnly="True" CanUserResize="False"/>
+                    <DataGridTextColumn Header="网站" Binding="{Binding Path=SiteName}" Width="60" CanUserResize="False"/>
+                    <DataGridTemplateColumn Header="时间" Width="120" CanUserResize="False">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                                    <TextBlock.Text>
+                                        <Binding Path="PublishDate" StringFormat="yyyy/MM/dd hh:mm"/>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="标题" Binding="{Binding Path=Title}" Width="200" CanUserResize="False"/>
                     <DataGridTextColumn Header="内容" Binding="{Binding Path=Content}" Width="*" CanUserResize="False">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
