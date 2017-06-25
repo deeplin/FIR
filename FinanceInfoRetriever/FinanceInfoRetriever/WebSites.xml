@@ -4,9 +4,10 @@
     <Id>1</Id>
     <SiteName>互动易</SiteName>
     <SiteAddress>http://irm.cninfo.com.cn</SiteAddress>
-    <LinkAddress />
+    <LinkAddress>http://irm.cninfo.com.cn/ircs/interaction/topSearchForSzse.do</LinkAddress>
     <Keyword />
-    <Referer />
+    <Referer>http://irm.cninfo.com.cn/ircs/interaction/topSearchForSzse.do</Referer>
+    <ContentFormat>condition.dateFrom={1}&amp;condition.dateTo={2}&amp;condition.provinceCode=&amp;condition.plate=&amp;condition.searchType=content&amp;condition.stocktype=S&amp;condition.keyWord={0}&amp;condition.status=3&amp;condition.needAttribute=true&amp;condition.attr_val=&amp;condition.questionAtr=&amp;condition.searchRange=0&amp;condition.searchRangeRadio=0</ContentFormat>
   </WebSite>
   <WebSite>
     <Id>2</Id>
@@ -15,6 +16,7 @@
     <LinkAddress>http://sns.sseinfo.com/qasearch.do</LinkAddress>
     <Keyword />
     <Referer>http://sns.sseinfo.com/search.do?keyword={0}&amp;keywordEnd={0}</Referer>
+    <ContentFormat>"page=1&amp;keyword={0}&amp;sdate=&amp;edate="</ContentFormat>
   </WebSite>
   <WebSite>
     <Id>3</Id>
@@ -23,6 +25,7 @@
     <LinkAddress>http://search.ccgp.gov.cn/znzxsearch?searchtype=2&amp;page_index=1&amp;searchchannel=0&amp;kw={0}</LinkAddress>
     <Keyword />
     <Referer />
+    <ContentFormat />
   </WebSite>
   <WebSite>
     <Id>4</Id>
@@ -31,6 +34,7 @@
     <LinkAddress>http://search.ifeng.com/sofeng/search.action?q={0}&amp;c=1&amp;chel=</LinkAddress>
     <Keyword />
     <Referer />
+    <ContentFormat />
   </WebSite>
   <WebSite>
     <Id>5</Id>
@@ -39,6 +43,7 @@
     <LinkAddress />
     <Keyword />
     <Referer />
+    <ContentFormat />
   </WebSite>
   <WebSite>
     <Id>6</Id>
@@ -47,5 +52,6 @@
     <LinkAddress />
     <Keyword />
     <Referer />
+    <ContentFormat />
   </WebSite>
 </ArrayOfWebSite>

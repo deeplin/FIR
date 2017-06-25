@@ -12,6 +12,7 @@ namespace FinanceInfoRetriever.Models
         public WebSite()
         {
             Referer = "";
+            ContentFormat = "";
         }
         public int Id { get; set; }
 
@@ -24,6 +25,8 @@ namespace FinanceInfoRetriever.Models
         public string Keyword { get; set; }
 
         public string Referer  { get; set; }
+
+        public string ContentFormat { get; set; }
 
     }
 }

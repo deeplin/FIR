@@ -30,10 +30,24 @@ namespace FinanceInfoRetriever.Controls
         {
             switch (webSite.Id)
             {
+                case 1:
+                    {
+                        DateTime now = DateTime.Now;
+                        string dateTo = now.ToString("yyyy-MM-dd");
+                        now = now.AddDays(-30);
+                        string dateFrom = now.ToString("yyyy-MM-dd");
+                        string requestUri = webSite.LinkAddress;
+                        string contentFormat = webSite.ContentFormat;
+                        string content = String.Format(contentFormat, webSite.Keyword, dateFrom, dateTo);
+                        string referer = String.Format(webSite.Referer, webSite.Keyword);
+                        string html = await HttpPost(requestUri, content, referer);
+                        HtmlParser.GetCnInfoArticle(html, webSite.SiteName);
+                    }
+                    break;
                 case 2:
                     {
                         string requestUri = webSite.LinkAddress;
-                        string contentFormat = "page=1&keyword={0}&sdate=&edate=";
+                        string contentFormat = webSite.ContentFormat;
                         string content = String.Format(contentFormat, webSite.Keyword);
                         string referer = String.Format(webSite.Referer, webSite.Keyword);
                         string html = await HttpPost(requestUri, content, referer);

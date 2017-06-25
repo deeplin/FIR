@@ -26,9 +26,7 @@
                         <EventSetter Event="Button.Click" Handler="Button_Click"/>
                     </Style>
                 </StackPanel.Resources>
-                <Button Name="buttonSave" Content="保存查询"/>
-                <Button Name="buttonStart" Content="启动查询"/>
-                <Button Name="buttonStop" Content="停止查询" IsEnabled="False"/>
+
             </StackPanel>
             <Separator DockPanel.Dock="Bottom"/>
 
