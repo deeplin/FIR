@@ -26,10 +26,8 @@ namespace FinanceInfoRetriever.Views
     /// </summary>
     public partial class SetupPage : Page
     {
-
         private readonly NLog.Logger logger = NLog.LogManager.GetCurrentClassLogger();
 
-        private XmlDataProvider provider = new XmlDataProvider();
         public SetupPage()
         {
         }
@@ -74,6 +72,7 @@ namespace FinanceInfoRetriever.Views
                     status = "查询启动";
                     break;
                 case ("buttonStop"):
+                    Stop();
                     buttonStart.IsEnabled = true;
                     buttonStop.IsEnabled = false;
                     status = "查询结束";
@@ -94,6 +93,13 @@ namespace FinanceInfoRetriever.Views
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
             SearchControl searchControl = container.Resolve<SearchControl>();
             searchControl.Start();
+        }
+
+        private void Stop()
+        {
+            IUnityContainer container = UnityConfig.GetConfiguredContainer();
+            SearchControl searchControl = container.Resolve<SearchControl>();
+            searchControl.Stop();
         }
 
     }

@@ -45,13 +45,4 @@
     <Referer />
     <ContentFormat />
   </WebSite>
-  <WebSite>
-    <Id>6</Id>
-    <SiteName>深交所</SiteName>
-    <SiteAddress>http://disclosure.szse.cn/m/drgg.htm</SiteAddress>
-    <LinkAddress />
-    <Keyword />
-    <Referer />
-    <ContentFormat />
-  </WebSite>
 </ArrayOfWebSite>
