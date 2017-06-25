@@ -19,5 +19,6 @@ namespace FinanceInfoRetriever.Utils
         public const string NextLineFilter = @"\n";
 
         public const string FontFilter = @"<[//]?font.*?>";
+        public const string EmFilter = @"<[//]?em>";
     }
 }

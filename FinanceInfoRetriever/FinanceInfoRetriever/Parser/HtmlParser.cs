@@ -14,13 +14,16 @@ namespace FinanceInfoRetriever.Parser
 {
     class HtmlParser
     {
+        private const string CNINFO_PATTERN = @"(?is)<a[^>]+>(?<title>[^<]*)</a>[^>]*>(?<request>[^<]*)</a>.*?questionId[^>]*target=""_blank"">(?<response>[^<]*)</a>.*?date"">(?<time>[^<]*)";
+
+        private const string SSEINFO_PATTERN = @"<a[^>]*>:(?<title>[^<]+)</a>(?<request>[^<]+)</div>.*?m_feed[^>]*>(?<response>[^<]+).*?<span>(?<time>[^<]+)</span>";
+
         private const string CCGP_PATTERN = @"(?is)<a\shref=\""(?<link>\S+)\""\starget=\""_blank\"">(?<content>.*?)</a><em>(?<time>.*?)</em><span\stitle=\""(?<title>.*?)\"">";
-
-        private const string SSEINFO_PATTERN = @"(?is)<a\shref='\S+'&nbsp;>:(?<title>[\u4e00-\u9fa5()\d]*)</a>(?<request>.*?)</div>.*?""m_feed_txt.*?>(?<response>[^<\s]+).*?<span>(?<time>.*?)</span>";
-
+        
         private const string IFENG_PATTERN = @"(?is)<a\shref=""(?<link>\S+)"" target=""_blank"">(?<title>[^<]*)<.*?<p>(?<content>[^<]*)<.*?<p>[^ ]* (?<time>[^<]+)<";
 
-        private const string CNINFO_PATTERN = @"(?is)<a[^>]+>(?<title>[^<]*)</a>[^>]*>(?<request>[^<]*)</a>.*?questionId[^>]*target=""_blank"">(?<response>[^<]*)</a>.*?date"">(?<time>[^<]*)";
+        private const string BAIDU_PATTERN = @"<a href=""(?<link>[^""]+)""[^>]*>(?<title>[^<]+)</a>.*?<p[^>]*>(?<source>[^&]+)&nbsp;&nbsp;(?<time>[^<]+)</p>(?<content>[^<]+)";
+
 
         //Id = 1 互动易 Post
         public static void GetCnInfoArticle(string html, string siteName)
@@ -37,7 +40,6 @@ namespace FinanceInfoRetriever.Parser
             SearchMetaData searchMetaData = container.Resolve<SearchMetaData>();
 
             string pattern = @"<>";
-            string timePattern = "[年月日]";
             string[] spliteString = Regex.Split(html, pattern);
 
             spliteString.ToList().ForEach(str =>
@@ -47,8 +49,7 @@ namespace FinanceInfoRetriever.Parser
                 {
                     Article article = container.Resolve<Article>();
                     string time = match.Groups["time"].Value;
-                    time = Regex.Replace(time, timePattern, " ");
-                    article.PublishDate = DateTime.ParseExact(time, "yyyy MM dd  HH:mm", CultureInfo.InvariantCulture);
+                    article.PublishDate = DateTime.ParseExact(time, "yyyy年MM月dd日 HH:mm", CultureInfo.InvariantCulture);
 
                     article.Title = match.Groups["title"].Value;
                     article.Content = "问题: " + match.Groups["request"].Value + "\n" + "回答: " + match.Groups["response"].Value;
@@ -61,7 +62,7 @@ namespace FinanceInfoRetriever.Parser
         }
 
 
-        //Id = 2
+        //Id = 2 上证互动 sseinfo
         public static void GetSseInfoArticle(string html, string siteName)
         {
             html = Regex.Replace(html, Constant.TabFilter, "");
@@ -108,7 +109,7 @@ namespace FinanceInfoRetriever.Parser
             {
                 DateTime time = DateTime.Now;
                 int passed = Int32.Parse(hourMatch.Groups["hour"].Value);
-                time.AddHours(passed * -1);
+                time = time.AddHours(passed * -1);
                 return time;
             }
 
@@ -118,7 +119,7 @@ namespace FinanceInfoRetriever.Parser
             {
                 DateTime time = DateTime.Now;
                 int passed = Int32.Parse(minuteMatch.Groups["minute"].Value);
-                time.AddMinutes(passed * -1);
+                time = time.AddMinutes(passed * -1);
                 return time;
             }
             return null;
@@ -179,6 +180,42 @@ namespace FinanceInfoRetriever.Parser
 
                     article.SiteName = siteName;
                     searchMetaData.AddArticle(article);
+                }
+            });
+        }
+
+        //Id = 5 百度 Get
+        public static void GetBaiduArticle(string html, string siteName)
+        {
+            html = Regex.Replace(html, Constant.EmFilter, "");
+
+            //做标记
+            html = Regex.Replace(html, @"<a href=""http:", @"<><a href=""http:");
+
+            IUnityContainer container = UnityConfig.GetConfiguredContainer();
+            SearchMetaData searchMetaData = container.Resolve<SearchMetaData>();
+
+            string pattern = @"<>";
+            string[] spliteString = Regex.Split(html, pattern);
+
+            spliteString.ToList().ForEach(str =>
+            {
+                Match match = Regex.Match(str, BAIDU_PATTERN);
+                if (match.Success)
+                {
+                    DateTime? time = GetTime(match.Groups["time"].Value);
+                    if (time != null)
+                    {
+                        Article article = container.Resolve<Article>();
+                        article.PublishDate = (DateTime)time;
+
+                        article.Title = match.Groups["title"].Value;
+                        article.Content = match.Groups["content"].Value;
+                        article.Link = match.Groups["link"].Value;
+
+                        article.SiteName = siteName;
+                        searchMetaData.AddArticle(article);
+                    }
                 }
             });
         }

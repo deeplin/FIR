@@ -68,19 +68,13 @@ namespace FinanceInfoRetriever.Controls
                         HtmlParser.GetIfengArticle(html, webSite.SiteName);
                     }
                     break;
-
-
-                    //return await Task.Run(() => JsonObject.Parse(content));
-
-                    //using (Stream stream = await responseMessage.Content.ReadAsStreamAsync())
-                    //using(Stream stream = await httpClient.GetStreamAsync(requestUri))
-                    ////using (Stream decompressed = new GZipStream(stream, CompressionMode.Decompress))
-                    //using (StreamReader streamReader = new StreamReader(stream))
-                    //{
-                    //    content = streamReader.ReadToEnd();
-
-                    //}
-
+                case 5:
+                    {
+                        string requestUri = String.Format(webSite.LinkAddress, webSite.Keyword);
+                        string html = await HttpGet(requestUri);
+                        HtmlParser.GetBaiduArticle(html, webSite.SiteName);
+                    }
+                    break;
             }
         }
 
@@ -138,17 +132,5 @@ namespace FinanceInfoRetriever.Controls
                 return await responseMessage.Content.ReadAsStringAsync();
             }
         }
-
-
-        //public async Task<JsonObject> PostAsync(string uri, string data)
-        //{
-        //    var httpClient = new HttpClient();
-        //    response = await httpClient.PostAsync(uri, new StringContent(data));
-
-        //    response.EnsureSuccessStatusCode();
-
-        //    string content = await response.Content.ReadAsStringAsync();
-        //    return await Task.Run(() => JsonObject.Parse(content));
-        //}
     }
 }
