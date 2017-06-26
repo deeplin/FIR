@@ -21,7 +21,7 @@ namespace FinanceInfoRetriever
         public void OnStartup(object sender, StartupEventArgs e)
         {
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
-            SearchMetaData searchMetaData = container.Resolve<SearchMetaData>();
+            SystemMetaData searchMetaData = container.Resolve<SystemMetaData>();
             searchMetaData.WebSiteList = XmlUtil.LoadFromXml<List<WebSite>>(Constant.WEB_SITE_FILE);
         }
 

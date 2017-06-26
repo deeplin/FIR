@@ -89,10 +89,11 @@
     <Compile Include="Controls\SearchControl.cs" />
     <Compile Include="Controls\HttpObserver.cs" />
     <Compile Include="Models\Article.cs" />
-    <Compile Include="Models\SearchMetaData.cs" />
+    <Compile Include="Models\SystemMetaData.cs" />
     <Compile Include="Models\WebSite.cs" />
     <Compile Include="Parser\HtmlParser.cs" />
     <Compile Include="Parser\GeneralHtmlParser.cs" />
+    <Compile Include="Utils\ServiceStatus.cs" />
     <Compile Include="Utils\Constant.cs" />
     <Compile Include="Utils\UnityConfig.cs" />
     <Compile Include="Utils\XmlUtil.cs" />

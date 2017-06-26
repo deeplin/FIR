@@ -26,7 +26,9 @@
                         <EventSetter Event="Button.Click" Handler="Button_Click"/>
                     </Style>
                 </StackPanel.Resources>
-
+                <Button Name="buttonStart" IsEnabled="{Binding Disabled, Mode=TwoWay}" Content="启动查询"/>
+                <Button Name="buttonStop" IsEnabled="{Binding Enabled, Mode=TwoWay}" Content="停止查询"/>
+                <Button Name="buttonDelete" Content="删除记录"/>
             </StackPanel>
             <Separator DockPanel.Dock="Bottom"/>
 

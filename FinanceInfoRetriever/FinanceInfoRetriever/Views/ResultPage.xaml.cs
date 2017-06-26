@@ -1,4 +1,5 @@
-﻿using FinanceInfoRetriever.Models;
+﻿using FinanceInfoRetriever.Controls;
+using FinanceInfoRetriever.Models;
 using FinanceInfoRetriever.Utils;
 using Microsoft.Practices.Unity;
 using System;
@@ -34,8 +35,11 @@ namespace FinanceInfoRetriever.Views
             DataGridWebSite.CanUserAddRows = false;
 
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
-            SearchMetaData searchMetaData = container.Resolve<SearchMetaData>();
-            DataGridWebSite.ItemsSource = searchMetaData.ArticleList;
+            SystemMetaData systemMetaData = container.Resolve<SystemMetaData>();
+            DataGridWebSite.ItemsSource = systemMetaData.ArticleList;
+
+            DataContext = systemMetaData.ServiceStatus;
+            //buttonStop.DataContext = systemMetaData.ServiceStatus;
         }
 
         private void DataGridWebSite_MouseDown(object sender, MouseButtonEventArgs e)
@@ -55,18 +59,41 @@ namespace FinanceInfoRetriever.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Button btn = e.Source as Button;
-            string name = btn.Name;
+            IUnityContainer container = UnityConfig.GetConfiguredContainer();
+            SystemMetaData systemMetaData = container.Resolve<SystemMetaData>();
 
-            switch (name)
+            Button button = e.Source as Button;
+
+            string status = "";
+            if (button == buttonStart)
             {
-                case ("buttonSave"):
-                    break;
-                case ("buttonStart"):
-                    break;
-                case ("buttonStop"):
-                    break;
+                buttonStart.IsEnabled = false;
+                status = "查询开始";
             }
+            else if(button == buttonStop)
+            {
+                buttonStop.IsEnabled = false;
+                status = "查询结束";
+            }
+            else if(button == buttonDelete)
+            {
+
+            }
+            labelStatus.Content = status;
+        }
+
+        private void Start()
+        {
+            IUnityContainer container = UnityConfig.GetConfiguredContainer();
+            SearchControl searchControl = container.Resolve<SearchControl>();
+            searchControl.Start();
+        }
+
+        private void Stop()
+        {
+            IUnityContainer container = UnityConfig.GetConfiguredContainer();
+            SearchControl searchControl = container.Resolve<SearchControl>();
+            searchControl.Stop();
         }
     }
 }

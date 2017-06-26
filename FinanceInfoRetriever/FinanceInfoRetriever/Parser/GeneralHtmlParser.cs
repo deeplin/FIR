@@ -60,9 +60,6 @@ namespace FinanceInfoRetriever.Parser
         private static int _endLimitCharCount = 20;
 
 
-
-
-
         /// <summary>
         /// 从给定的Html原始文本中获取正文信息
         /// </summary>

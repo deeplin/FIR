@@ -28,7 +28,7 @@ namespace FinanceInfoRetriever.Controls
             cancellationTokenSource = new CancellationTokenSource();
 
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
-            SearchMetaData searchSetting = container.Resolve<SearchMetaData>();
+            SystemMetaData searchSetting = container.Resolve<SystemMetaData>();
 
             List<WebSite> webSiteList = searchSetting.WebSiteList;
 

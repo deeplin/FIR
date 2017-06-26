@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinanceInfoRetriever.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,12 +7,15 @@ using System.Threading.Tasks;
 
 namespace FinanceInfoRetriever.Models
 {
-    class SearchMetaData
+    class SystemMetaData
     {
-        public SearchMetaData()
+        public SystemMetaData()
         {
             ArticleList = new List<Article>();
+            ServiceStatus = new ServiceStatus();
         }
+
+        public ServiceStatus ServiceStatus { get; set; }
 
         public List<WebSite> WebSiteList { get; set; }
 

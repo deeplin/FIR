@@ -37,7 +37,7 @@ namespace FinanceInfoRetriever.Views
             DataGridWebSite.CanUserAddRows = false;
 
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
-            SearchMetaData searchMetaData = container.Resolve<SearchMetaData>();
+            SystemMetaData searchMetaData = container.Resolve<SystemMetaData>();
             DataGridWebSite.ItemsSource = searchMetaData.WebSiteList;
         }
 
@@ -53,30 +53,19 @@ namespace FinanceInfoRetriever.Views
             }
         }
 
+        private void DataGridWebSite_CurrentCellChanged(object sender, EventArgs e)
+        {
+            labelStatus.Content = "";
+        }
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Button btn = e.Source as Button;
-            string name = btn.Name;
-
+            Button button = e.Source as Button;
             string status = "";
-            switch (name)
+            if (button == buttonSave)
             {
-                case ("buttonSave"):
-                    Save();
-                    status = "已经保存";
-                    break;
-                case ("buttonStart"):
-                    Start();
-                    buttonStart.IsEnabled = false;
-                    buttonStop.IsEnabled = true;
-                    status = "查询启动";
-                    break;
-                case ("buttonStop"):
-                    Stop();
-                    buttonStart.IsEnabled = true;
-                    buttonStop.IsEnabled = false;
-                    status = "查询结束";
-                    break;
+                Save();
+                status = "已经保存";
             }
             labelStatus.Content = status;
         }
@@ -84,23 +73,8 @@ namespace FinanceInfoRetriever.Views
         private void Save()
         {
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
-            SearchMetaData searchSetting = container.Resolve<SearchMetaData>();
-            XmlUtil.SaveToXml<List<WebSite>>(Constant.WEB_SITE_FILE, searchSetting.WebSiteList);
+            SystemMetaData systemSetting = container.Resolve<SystemMetaData>();
+            XmlUtil.SaveToXml<List<WebSite>>(Constant.WEB_SITE_FILE, systemSetting.WebSiteList);
         }
-
-        private void Start()
-        {
-            IUnityContainer container = UnityConfig.GetConfiguredContainer();
-            SearchControl searchControl = container.Resolve<SearchControl>();
-            searchControl.Start();
-        }
-
-        private void Stop()
-        {
-            IUnityContainer container = UnityConfig.GetConfiguredContainer();
-            SearchControl searchControl = container.Resolve<SearchControl>();
-            searchControl.Stop();
-        }
-
     }
 }

@@ -40,7 +40,7 @@ namespace FinanceInfoRetriever.Utils
             container.RegisterType<HttpObserver>();
 
             //Models
-            container.RegisterType<SearchMetaData>(new ContainerControlledLifetimeManager());
+            container.RegisterType<SystemMetaData>(new ContainerControlledLifetimeManager());
             container.RegisterType<Article>();
         }
     }

@@ -37,7 +37,7 @@ namespace FinanceInfoRetriever.Parser
             html = Regex.Replace(html, @"<a class=""blue2"" href=""http://irm.cninfo.com.cn/ssessgs/", @"<><a class=""blue2"" href=""http://irm.cninfo.com.cn/ssessgs/");
 
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
-            SearchMetaData searchMetaData = container.Resolve<SearchMetaData>();
+            SystemMetaData searchMetaData = container.Resolve<SystemMetaData>();
 
             string pattern = @"<>";
             string[] spliteString = Regex.Split(html, pattern);
@@ -74,7 +74,7 @@ namespace FinanceInfoRetriever.Parser
             html = Regex.Replace(html, @"<a href='user.do\?uid=", "<><a href='user.do?uid=");
 
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
-            SearchMetaData searchMetaData = container.Resolve<SearchMetaData>();
+            SystemMetaData searchMetaData = container.Resolve<SystemMetaData>();
 
             string pattern = @"<>";
             string[] spliteString = Regex.Split(html, pattern);
@@ -133,7 +133,7 @@ namespace FinanceInfoRetriever.Parser
             html = Regex.Replace(html, Constant.NextLineFilter, "");
 
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
-            SearchMetaData searchMetaData = container.Resolve<SearchMetaData>();
+            SystemMetaData searchMetaData = container.Resolve<SystemMetaData>();
 
             MatchCollection collection = Regex.Matches(html, CCGP_PATTERN);
             foreach (Match match in collection)
@@ -160,7 +160,7 @@ namespace FinanceInfoRetriever.Parser
             html = Regex.Replace(html, @"<a href=""http:", @"<><a href=""http:");
 
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
-            SearchMetaData searchMetaData = container.Resolve<SearchMetaData>();
+            SystemMetaData searchMetaData = container.Resolve<SystemMetaData>();
 
             string pattern = @"<>";
             string[] spliteString = Regex.Split(html, pattern);
@@ -193,7 +193,7 @@ namespace FinanceInfoRetriever.Parser
             html = Regex.Replace(html, @"<a href=""http:", @"<><a href=""http:");
 
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
-            SearchMetaData searchMetaData = container.Resolve<SearchMetaData>();
+            SystemMetaData searchMetaData = container.Resolve<SystemMetaData>();
 
             string pattern = @"<>";
             string[] spliteString = Regex.Split(html, pattern);
