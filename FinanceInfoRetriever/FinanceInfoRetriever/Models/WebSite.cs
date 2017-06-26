@@ -13,6 +13,7 @@ namespace FinanceInfoRetriever.Models
         {
             Referer = "";
             ContentFormat = "";
+            Keyword = "";
         }
         public int Id { get; set; }
 
@@ -28,5 +29,17 @@ namespace FinanceInfoRetriever.Models
 
         public string ContentFormat { get; set; }
 
+        public WebSite Clone()
+        {
+            WebSite webSite = new WebSite();
+            webSite.Id = Id;
+            webSite.SiteName = SiteName;
+            webSite.SiteAddress = SiteAddress;
+            webSite.LinkAddress = LinkAddress;
+            webSite.Keyword = Keyword;
+            webSite.Referer = Referer;
+            webSite.ContentFormat = ContentFormat;
+            return webSite;
+        }
     }
 }

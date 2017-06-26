@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FinanceInfoRetriever.Views"
         mc:Ignorable="d"
-        Title="金融信息收集者(Financial Information Retrieval) V1.0 作者:林凌" Height="600" Width="1000" Background="#FFF0F9D8" 
+        Title="金融信息收集者(Financial Information Retrieval) V1.1 作者:林凌" Height="600" Width="1000" Background="#FFF0F9D8" 
         WindowStartupLocation="CenterScreen" Initialized="Window_Initialized">
     <Grid>
         <Grid.ColumnDefinitions>

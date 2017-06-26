@@ -31,7 +31,18 @@ namespace FinanceInfoRetriever.Controls
 
                 List<WebSite> webSiteList = systemMetaData.WebSiteList;
 
-                Parallel.ForEach(webSiteList, website => Search(website));
+                Parallel.ForEach(webSiteList, website => 
+                {
+                    string keywords = website.Keyword;
+                    string[] keywordArray = keywords.Split(' ');
+
+                    foreach(string singleKeyword in keywordArray)
+                    {
+                        WebSite newWebSite = website.Clone();
+                        newWebSite.Keyword = singleKeyword;
+                        Search(newWebSite);
+                    }
+                });
             }
         }
 

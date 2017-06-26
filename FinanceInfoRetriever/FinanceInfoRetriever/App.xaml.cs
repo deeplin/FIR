@@ -29,7 +29,7 @@ namespace FinanceInfoRetriever
         {
             logger.Error(e.Exception, "Application unhandled error");
             //表示己经处理过异常，将不会传递异常给操作系统
-            e.Handled = true;
+            //e.Handled = true;
         }
 
         private void Application_SessionEnding(object sender, SessionEndingCancelEventArgs e)
