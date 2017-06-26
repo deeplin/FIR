@@ -52,7 +52,7 @@ namespace FinanceInfoRetriever.Parser
                     article.PublishDate = DateTime.ParseExact(time, "yyyy年MM月dd日 HH:mm", CultureInfo.InvariantCulture);
 
                     article.Title = match.Groups["title"].Value;
-                    article.Content = "问题: " + match.Groups["request"].Value + "\n" + "回答: " + match.Groups["response"].Value;
+                    article.Content = "问题: " + match.Groups["request"].Value + "\n\n" + "回答: " + match.Groups["response"].Value;
                     article.Link = null;
 
                     article.SiteName = siteName;
@@ -91,7 +91,7 @@ namespace FinanceInfoRetriever.Parser
                         article.PublishDate = (DateTime)time;
 
                         article.Title = match.Groups["title"].Value;
-                        article.Content = "问题: " + match.Groups["request"].Value + "\n" + "回答: " + match.Groups["response"].Value;
+                        article.Content = "问题: " + match.Groups["request"].Value + "\n\n" + "回答: " + match.Groups["response"].Value;
                         article.Link = null;
 
                         article.SiteName = siteName;

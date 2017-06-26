@@ -13,7 +13,6 @@ namespace FinanceInfoRetriever.Controls
 {
     public class SearchControl
     {
-        private CancellationTokenSource cancellationTokenSource;
         private List<IDisposable> disposableList;
 
         public SearchControl()
@@ -23,29 +22,23 @@ namespace FinanceInfoRetriever.Controls
 
         public void Start()
         {
-            Stop();
+            lock (this)
+            {
+                Stop();
 
-            cancellationTokenSource = new CancellationTokenSource();
+                IUnityContainer container = UnityConfig.GetConfiguredContainer();
+                SystemMetaData systemMetaData = container.Resolve<SystemMetaData>();
 
-            IUnityContainer container = UnityConfig.GetConfiguredContainer();
-            SystemMetaData searchSetting = container.Resolve<SystemMetaData>();
+                List<WebSite> webSiteList = systemMetaData.WebSiteList;
 
-            List<WebSite> webSiteList = searchSetting.WebSiteList;
-
-            Parallel.ForEach(webSiteList, website => Search(website));
+                Parallel.ForEach(webSiteList, website => Search(website));
+            }
         }
 
         public void Stop()
         {
             lock (this)
             {
-                if(cancellationTokenSource != null)
-                {
-                    cancellationTokenSource.Cancel();
-                    cancellationTokenSource.Dispose();
-                    cancellationTokenSource = null;
-                }
-
                 disposableList.ToList().ForEach(disposable => disposable.Dispose());
                 disposableList.Clear();
             }
@@ -64,12 +57,12 @@ namespace FinanceInfoRetriever.Controls
             }
 
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
-            IObserver<WebSite> restGetObserver = container.Resolve<HttpObserver>();
+            IObserver<WebSite> httpObserver = container.Resolve<HttpObserver>();
 
             IObservable<WebSite> source = Observable
                 .Timer(TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(Constant.REFRESH_RATE))
                 .Select(num => website);
-            IDisposable subscription = source.Subscribe(restGetObserver);
+            IDisposable subscription = source.Subscribe(httpObserver);
 
             disposableList.Add(subscription);
         }

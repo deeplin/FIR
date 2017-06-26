@@ -92,7 +92,6 @@
     <Compile Include="Models\SystemMetaData.cs" />
     <Compile Include="Models\WebSite.cs" />
     <Compile Include="Parser\HtmlParser.cs" />
-    <Compile Include="Parser\GeneralHtmlParser.cs" />
     <Compile Include="Utils\ServiceStatus.cs" />
     <Compile Include="Utils\Constant.cs" />
     <Compile Include="Utils\UnityConfig.cs" />

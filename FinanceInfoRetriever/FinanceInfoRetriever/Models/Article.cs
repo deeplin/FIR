@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace FinanceInfoRetriever.Models
 {
-    class Article
+    public class Article
     {
+        public string Id { get; set; }
         public string SiteName { get; set; }
 
         public string Title { get; set; }
@@ -17,5 +18,10 @@ namespace FinanceInfoRetriever.Models
         public string Link { get; set; }
 
         public DateTime PublishDate { get; set; }
+
+        public override int GetHashCode()
+        {
+            return Content.GetHashCode();
+        }
     }
 }

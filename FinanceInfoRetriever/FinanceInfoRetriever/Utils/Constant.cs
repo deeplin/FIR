@@ -8,7 +8,9 @@ namespace FinanceInfoRetriever.Utils
 {
     public static class Constant
     {
-        public const int REFRESH_RATE = 3000; //SECONDS
+        public const int REFRESH_RATE = 30; //SECONDS
+        public const int ARTICLE_TO_BE_POSTED = 60; //MINUTE
+        public const int TOTAL_POSTED_ARTICLE = 50;
 
         public const string WEB_SITE_FILE = "WebSites.xml";
 

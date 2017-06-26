@@ -1,6 +1,9 @@
 ﻿using FinanceInfoRetriever.Utils;
+using FinanceInfoRetriever.Views;
+using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,8 +14,9 @@ namespace FinanceInfoRetriever.Models
     {
         public SystemMetaData()
         {
-            ArticleList = new List<Article>();
             ServiceStatus = new ServiceStatus();
+            ArticleList = new List<Article>();
+            ArticleHashSet = new HashSet<int>();
         }
 
         public ServiceStatus ServiceStatus { get; set; }
@@ -20,15 +24,35 @@ namespace FinanceInfoRetriever.Models
         public List<WebSite> WebSiteList { get; set; }
 
         public List<Article> ArticleList { get; set; }
-
+        public ISet<int> ArticleHashSet { get; set; }
+        private int index = 0;
         public void AddArticle(Article article)
         {
-            lock (ArticleList)
+            //是否10分钟内
+            DateTime now = DateTime.Now;
+            TimeSpan passed = now.Subtract(article.PublishDate);
+            if(passed.TotalMinutes > Constant.ARTICLE_TO_BE_POSTED)
             {
-                ArticleList.Add(article);
-                while(ArticleList.Count > 100)
+                return;
+            }
+
+            int hashCode = article.GetHashCode();
+            lock (ArticleHashSet)
+            {
+                if (!ArticleHashSet.Contains(hashCode))
                 {
-                    ArticleList.RemoveAt(0);
+                    ArticleHashSet.Add(hashCode);
+
+                    IUnityContainer container = UnityConfig.GetConfiguredContainer();
+                    ResultPage setupPage = container.Resolve<ResultPage>();
+
+                    article.Id = string.Format("{0:00000}", index ++);
+                    ArticleList.Add(article);
+                    while (ArticleList.Count > Constant.TOTAL_POSTED_ARTICLE)
+                    {
+                        ArticleList.RemoveAt(0);
+                    }
+                    setupPage.BindDataGrid();
                 }
             }
         }

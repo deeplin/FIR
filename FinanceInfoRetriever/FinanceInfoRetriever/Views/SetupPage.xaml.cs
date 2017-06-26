@@ -34,8 +34,6 @@ namespace FinanceInfoRetriever.Views
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            DataGridWebSite.CanUserAddRows = false;
-
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
             SystemMetaData searchMetaData = container.Resolve<SystemMetaData>();
             DataGridWebSite.ItemsSource = searchMetaData.WebSiteList;

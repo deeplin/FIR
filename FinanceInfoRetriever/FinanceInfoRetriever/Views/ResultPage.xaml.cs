@@ -4,8 +4,10 @@ using FinanceInfoRetriever.Utils;
 using Microsoft.Practices.Unity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Reactive.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -32,14 +34,15 @@ namespace FinanceInfoRetriever.Views
 
         private void Page_Initialized(object sender, EventArgs e)
         {
-            DataGridWebSite.CanUserAddRows = false;
-
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
+            container.RegisterInstance(this);
+
             SystemMetaData systemMetaData = container.Resolve<SystemMetaData>();
             DataGridWebSite.ItemsSource = systemMetaData.ArticleList;
 
-            DataContext = systemMetaData.ServiceStatus;
-            //buttonStop.DataContext = systemMetaData.ServiceStatus;
+            buttonStart.DataContext = systemMetaData.ServiceStatus;
+            buttonStop.DataContext = systemMetaData.ServiceStatus;
+
         }
 
         private void DataGridWebSite_MouseDown(object sender, MouseButtonEventArgs e)
@@ -69,15 +72,13 @@ namespace FinanceInfoRetriever.Views
             {
                 buttonStart.IsEnabled = false;
                 status = "查询开始";
+                Start();
             }
             else if(button == buttonStop)
             {
                 buttonStop.IsEnabled = false;
                 status = "查询结束";
-            }
-            else if(button == buttonDelete)
-            {
-
+                Stop();
             }
             labelStatus.Content = status;
         }
@@ -94,6 +95,35 @@ namespace FinanceInfoRetriever.Views
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
             SearchControl searchControl = container.Resolve<SearchControl>();
             searchControl.Stop();
+        }
+
+        public void BindDataGrid()
+        {
+            DataGridWebSite.Dispatcher.Invoke(() =>
+            {
+                SortDataGrid(DataGridWebSite);
+            });
+        }
+
+        public static void SortDataGrid(DataGrid dataGrid, int columnIndex = 0, ListSortDirection sortDirection = ListSortDirection.Descending)
+        {
+            var column = dataGrid.Columns[columnIndex];
+
+            // Clear current sort descriptions
+            dataGrid.Items.SortDescriptions.Clear();
+
+            // Add the new sort description
+            dataGrid.Items.SortDescriptions.Add(new SortDescription(column.SortMemberPath, sortDirection));
+
+            // Apply sort
+            foreach (var col in dataGrid.Columns)
+            {
+                col.SortDirection = null;
+            }
+            column.SortDirection = sortDirection;
+
+            // Refresh items to display sort
+            dataGrid.Items.Refresh();
         }
     }
 }

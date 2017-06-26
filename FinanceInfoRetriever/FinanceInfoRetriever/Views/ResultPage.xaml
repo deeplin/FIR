@@ -28,14 +28,14 @@
                 </StackPanel.Resources>
                 <Button Name="buttonStart" IsEnabled="{Binding Disabled, Mode=TwoWay}" Content="启动查询"/>
                 <Button Name="buttonStop" IsEnabled="{Binding Enabled, Mode=TwoWay}" Content="停止查询"/>
-                <Button Name="buttonDelete" Content="删除记录"/>
             </StackPanel>
             <Separator DockPanel.Dock="Bottom"/>
 
-            <DataGrid Name="DataGridWebSite" Margin="5" AutoGenerateColumns="False" IsReadOnly="True" MouseDown="DataGridWebSite_MouseDown">
+            <DataGrid Name="DataGridWebSite" Margin="5" AutoGenerateColumns="False" IsReadOnly="True" MouseDown="DataGridWebSite_MouseDown" CanUserAddRows="False">
                 <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Path=Id}" Width="60" CanUserResize="False"/>
                     <DataGridTextColumn Header="网站" Binding="{Binding Path=SiteName}" Width="60" CanUserResize="False"/>
-                    <DataGridTemplateColumn Header="时间" Width="120" CanUserResize="False">
+                    <DataGridTemplateColumn Header="时间" Width="110" CanUserResize="False">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock>
@@ -46,7 +46,14 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="标题" Binding="{Binding Path=Title}" Width="200" CanUserResize="False"/>
+                    <DataGridTextColumn Header="标题" Binding="{Binding Path=Title}" Width="160" CanUserResize="False">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="TextWrapping" Value="Wrap"/>
+                                <Setter Property="Height" Value="auto"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
                     <DataGridTextColumn Header="内容" Binding="{Binding Path=Content}" Width="*" CanUserResize="False">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="TextBlock">
