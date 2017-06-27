@@ -1,0 +1,13 @@
+﻿<Application x:Class="FinancialInformationRetrieval.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:FinancialInformationRetrieval"
+             StartupUri="Views/MainWindow.xaml"
+             Startup="OnStartup"
+             DispatcherUnhandledException="Application_DispatcherUnhandledException"
+             SessionEnding="Application_SessionEnding"
+             Exit="Application_Exit">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
