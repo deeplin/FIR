@@ -1,0 +1,57 @@
+﻿<Page x:Class="FIR.Views.SystemSettingPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FIR.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300" Initialized="Page_Initialized">
+
+    <Grid Background="Beige">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label Content="系统设置" Grid.Row="0" HorizontalAlignment="Center"/>
+
+        <DockPanel Grid.Row="1" Background="#FFFBFBF4">
+
+            <StackPanel Orientation="Horizontal"
+                      HorizontalAlignment="Center"
+                      DockPanel.Dock="Bottom">
+                <StackPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin" Value="10 0 0 0"/>
+                        <Setter Property="Padding" Value="15 0 15 0"/>
+                        <EventSetter Event="Button.Click" Handler="Button_Click"/>
+                    </Style>
+                </StackPanel.Resources>
+                <Button Name="buttonStart" Content="保存设置"/>
+            </StackPanel>
+            <Separator DockPanel.Dock="Bottom"/>
+
+            <StackPanel Orientation="Horizontal"
+                      HorizontalAlignment="Center"
+                      DockPanel.Dock="Top">
+                <Label Content="线程刷新(秒):" HorizontalAlignment="Center"/>
+            <TextBox Name="refreshRateTextBox" Width="80" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                      HorizontalAlignment="Center"
+                      DockPanel.Dock="Top">
+                <Label Content="新闻过时(小时):" HorizontalAlignment="Center"/>
+                <TextBox Name="expireTimeTextBox" Width="80" VerticalAlignment="Center" VerticalContentAlignment="Center" HorizontalContentAlignment="Right"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                      HorizontalAlignment="Center"
+                      DockPanel.Dock="Top">
+            </StackPanel>
+        </DockPanel>
+
+        <StatusBar Grid.Row="2">
+            <Label Name="labelStatus" Content=""/>
+        </StatusBar>
+    </Grid>
+</Page>

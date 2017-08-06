@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SystemSetting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <!--线程刷新时间 单位秒-->
+  <RefreshRate>60</RefreshRate>
+  <!--新闻有效时间 单位小时-->
+  <ExpireTime>2</ExpireTime>
+</SystemSetting>

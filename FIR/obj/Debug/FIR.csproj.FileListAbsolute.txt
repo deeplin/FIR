@@ -41,4 +41,10 @@ D:\Cloud\FIR\FIR\bin\Debug\System.Reactive.Interfaces.xml
 D:\Cloud\FIR\FIR\bin\Debug\System.Reactive.Linq.xml
 D:\Cloud\FIR\FIR\bin\Debug\System.Reactive.PlatformServices.xml
 D:\Cloud\FIR\FIR\bin\Debug\System.Reactive.Windows.Threading.xml
+D:\Cloud\FIR\FIR\bin\Debug\FIR.exe.manifest
+D:\Cloud\FIR\FIR\bin\Debug\FIR.application
+D:\Cloud\FIR\FIR\obj\Debug\FIR.exe.manifest
+D:\Cloud\FIR\FIR\obj\Debug\FIR.application
+D:\Cloud\FIR\FIR\obj\Debug\Views\SystemSettingPage.g.cs
+D:\Cloud\FIR\FIR\obj\Debug\Views\SystemSettingPage.baml
 D:\Cloud\FIR\FIR\obj\Debug\FIR.csprojResolveAssemblyReference.cache
