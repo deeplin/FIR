@@ -10,5 +10,6 @@
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("nlog.config")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("websites.config")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("systemsetting.config")]
 
 

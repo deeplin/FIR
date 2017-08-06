@@ -41,7 +41,9 @@ namespace FIR.Utils
 
             //Models
             container.RegisterType<SystemMetaData>(new ContainerControlledLifetimeManager());
+            //container.RegisterType<SystemSetting>(new ContainerControlledLifetimeManager());
             container.RegisterType<Article>();
+            container.RegisterType<WebSite>();
         }
     }
 }

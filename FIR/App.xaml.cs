@@ -22,8 +22,13 @@ namespace FIR
         public void OnStartup(object sender, StartupEventArgs e)
         {
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
+
+            SystemSetting systemSetting = XmlUtil.LoadFromXml<SystemSetting>(Constant.SYSTEM_SETTING_FILE);
+            container.RegisterInstance(systemSetting);
+
             SystemMetaData searchMetaData = container.Resolve<SystemMetaData>();
             searchMetaData.WebSiteList = XmlUtil.LoadFromXml<List<WebSite>>(Constant.WEB_SITE_FILE);
+            searchMetaData.ExpireTime = systemSetting.ExpireTime;
         }
 
         private void Application_DispatcherUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)

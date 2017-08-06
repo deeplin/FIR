@@ -69,8 +69,10 @@ namespace FIR.Controls
             IUnityContainer container = UnityConfig.GetConfiguredContainer();
             IObserver<WebSite> httpObserver = container.Resolve<HttpObserver>();
 
+            SystemSetting systemSetting = container.Resolve<SystemSetting>();
+
             IObservable<WebSite> source = Observable
-                .Timer(TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(Constant.REFRESH_RATE))
+                .Timer(TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(systemSetting.RefreshRate))
                 .Select(num => website);
             IDisposable subscription = source.Subscribe(httpObserver);
 

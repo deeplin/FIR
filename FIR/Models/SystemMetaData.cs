@@ -16,7 +16,11 @@ namespace FIR.Models
             ServiceStatus = new ServiceStatus();
             ArticleList = new List<Article>();
             ArticleHashSet = new HashSet<int>();
+
+            ExpireTime = 60;
         }
+
+        public int ExpireTime{ get; set; }
 
         public ServiceStatus ServiceStatus { get; set; }
 
@@ -30,7 +34,7 @@ namespace FIR.Models
             //是否10分钟内
             DateTime now = DateTime.Now;
             TimeSpan passed = now.Subtract(article.PublishDate);
-            if (passed.TotalMinutes > Constant.ARTICLE_TO_BE_POSTED)
+            if (passed.TotalMinutes > ExpireTime)
             {
                 return;
             }

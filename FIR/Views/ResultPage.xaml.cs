@@ -40,7 +40,6 @@ namespace FIR.Views
 
             buttonStart.DataContext = systemMetaData.ServiceStatus;
             buttonStop.DataContext = systemMetaData.ServiceStatus;
-
         }
 
         private void DataGridWebSite_MouseDown(object sender, MouseButtonEventArgs e)
